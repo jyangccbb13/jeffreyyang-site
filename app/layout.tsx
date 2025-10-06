@@ -19,6 +19,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             background: "#111",
             color: "#fff",
             padding: "12px 0",
+            zIndex: 1000,
           }}
         >
           <div
@@ -41,12 +42,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
             {/* Navigation (right side) */}
             <nav style={{ display: "flex", gap: 20 }}>
-              <Link href="/about" style={{ color: "#ddd", textDecoration: "none" }}>
-                About
-              </Link>
-              <Link href="/hobbies" style={{ color: "#ddd", textDecoration: "none" }}>
-                Hobbies
-              </Link>
               <Link href="/photography" style={{ color: "#ddd", textDecoration: "none" }}>
                 Photography
               </Link>
