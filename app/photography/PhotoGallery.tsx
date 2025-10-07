@@ -60,6 +60,7 @@ export default function PhotoGallery() {
                 onClick={() => setSelectedPhoto(photo)}
               >
                 <div className="relative w-full h-full bg-gray-200 dark:bg-gray-800">
+                  {/* Image */}
                   <Image
                     src={photo.imagePath}
                     alt={photo.title}
@@ -68,16 +69,19 @@ export default function PhotoGallery() {
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
 
-                  {/* Diagonal Center Watermark */}
-                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
-                    <div className="text-white text-2xl md:text-3xl lg:text-4xl font-bold tracking-wider opacity-30 rotate-[-30deg] whitespace-nowrap">
-                      JEFFREY YANG PHOTOGRAPHY
+                  {/* Watermark Container - Matches image bounds exactly */}
+                  <div className="absolute inset-0 overflow-hidden pointer-events-none select-none">
+                    {/* Diagonal Center Watermark */}
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="text-white text-2xl md:text-3xl lg:text-4xl font-bold tracking-wider opacity-30 rotate-[-30deg] whitespace-nowrap drop-shadow-lg">
+                        JEFFREY YANG PHOTOGRAPHY
+                      </div>
                     </div>
-                  </div>
 
-                  {/* Instagram Handle - Bottom Right */}
-                  <div className="absolute bottom-2 right-2 text-white text-xs md:text-sm font-medium opacity-60 pointer-events-none select-none">
-                    @shotswithjeff
+                    {/* Instagram Handle - Bottom Right */}
+                    <div className="absolute bottom-3 right-3 text-white text-sm font-semibold opacity-70 drop-shadow-md">
+                      @shotswithjeff
+                    </div>
                   </div>
                 </div>
               </div>

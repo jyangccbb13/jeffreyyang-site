@@ -19,6 +19,7 @@ export default function PhotoModal({ photo, onClose }: PhotoModalProps) {
         onClick={(e) => e.stopPropagation()}
       >
         <div className="relative aspect-[4/3] w-full bg-gray-100 dark:bg-gray-800">
+          {/* Image */}
           <Image
             src={photo.imagePath}
             alt={photo.title}
@@ -27,16 +28,19 @@ export default function PhotoModal({ photo, onClose }: PhotoModalProps) {
             sizes="(max-width: 896px) 100vw, 896px"
           />
 
-          {/* Diagonal Center Watermark */}
-          <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
-            <div className="text-white text-4xl md:text-5xl lg:text-6xl font-bold tracking-wider opacity-25 rotate-[-30deg] whitespace-nowrap drop-shadow-lg">
-              JEFFREY YANG PHOTOGRAPHY
+          {/* Watermark Container - Matches image bounds exactly */}
+          <div className="absolute inset-0 overflow-hidden pointer-events-none select-none">
+            {/* Diagonal Center Watermark */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="text-white text-4xl md:text-5xl lg:text-6xl font-bold tracking-wider opacity-25 rotate-[-30deg] whitespace-nowrap drop-shadow-lg">
+                JEFFREY YANG PHOTOGRAPHY
+              </div>
             </div>
-          </div>
 
-          {/* Instagram Handle - Bottom Right */}
-          <div className="absolute bottom-4 right-4 text-white text-sm md:text-base font-medium opacity-70 pointer-events-none select-none drop-shadow-md">
-            @shotswithjeff
+            {/* Instagram Handle - Bottom Right */}
+            <div className="absolute bottom-6 right-6 text-white text-base md:text-lg font-semibold opacity-75 drop-shadow-md">
+              @shotswithjeff
+            </div>
           </div>
         </div>
 
