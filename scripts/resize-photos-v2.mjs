@@ -35,6 +35,43 @@ function getAspectRatioString(width, height) {
   return `${width / divisor}:${height / divisor}`;
 }
 
+async function createWatermarkSVG(width, height) {
+  const diagonalFontSize = Math.floor(width / 15);
+  const instagramFontSize = Math.floor(width / 50);
+
+  return Buffer.from(`
+    <svg width="${width}" height="${height}">
+      <defs>
+        <style>
+          .diagonal-text {
+            font-family: 'Arial Black', 'Arial', sans-serif;
+            font-weight: bold;
+            font-size: ${diagonalFontSize}px;
+            fill: white;
+            opacity: 0.3;
+            letter-spacing: 3px;
+          }
+          .instagram-text {
+            font-family: 'Arial', sans-serif;
+            font-weight: bold;
+            font-size: ${instagramFontSize}px;
+            fill: white;
+            opacity: 0.7;
+          }
+        </style>
+      </defs>
+      <g transform="translate(${width/2}, ${height/2}) rotate(-30)">
+        <text class="diagonal-text" text-anchor="middle" dominant-baseline="middle" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">
+          JEFFREY YANG PHOTOGRAPHY
+        </text>
+      </g>
+      <text class="instagram-text" x="${width - 20}" y="${height - 20}" text-anchor="end" style="text-shadow: 1px 1px 3px rgba(0,0,0,0.5);">
+        @shotswithjeff
+      </text>
+    </svg>
+  `);
+}
+
 async function processImage(inputPath, outputPath, category) {
   try {
     const image = sharp(inputPath);
@@ -61,13 +98,26 @@ async function processImage(inputPath, outputPath, category) {
       }
     }
 
+    // Resize image first
     await image
       .resize(newWidth, newHeight, {
         fit: 'inside',
         withoutEnlargement: true,
       })
       .jpeg({ quality: QUALITY, mozjpeg: true })
+      .toFile(outputPath + '.tmp');
+
+    // Add watermark
+    const watermarkSVG = await createWatermarkSVG(newWidth, newHeight);
+    await sharp(outputPath + '.tmp')
+      .composite([{
+        input: watermarkSVG,
+        gravity: 'northwest'
+      }])
       .toFile(outputPath);
+
+    // Clean up temp file
+    fs.unlinkSync(outputPath + '.tmp');
 
     const outputStats = fs.statSync(outputPath);
     const outputSizeMB = (outputStats.size / (1024 * 1024)).toFixed(2);
@@ -75,6 +125,7 @@ async function processImage(inputPath, outputPath, category) {
     const savedPercent = ((savedMB / sizeMB) * 100).toFixed(1);
 
     console.log(`   Resized: ${newWidth}x${newHeight} - ${outputSizeMB}MB`);
+    console.log(`   💧 Watermark added`);
     console.log(`   ✅ Saved ${savedMB}MB (${savedPercent}% reduction)`);
 
     return {
