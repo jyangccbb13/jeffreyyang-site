@@ -67,6 +67,18 @@ export default function PhotoGallery() {
                     className="object-cover group-hover:scale-105 transition-transform duration-300"
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
+
+                  {/* Diagonal Center Watermark */}
+                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
+                    <div className="text-white text-2xl md:text-3xl lg:text-4xl font-bold tracking-wider opacity-30 rotate-[-30deg] whitespace-nowrap">
+                      JEFFREY YANG PHOTOGRAPHY
+                    </div>
+                  </div>
+
+                  {/* Instagram Handle - Bottom Right */}
+                  <div className="absolute bottom-2 right-2 text-white text-xs md:text-sm font-medium opacity-60 pointer-events-none select-none">
+                    @shotswithjeff
+                  </div>
                 </div>
               </div>
             );

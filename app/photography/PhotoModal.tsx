@@ -26,6 +26,18 @@ export default function PhotoModal({ photo, onClose }: PhotoModalProps) {
             className="object-contain"
             sizes="(max-width: 896px) 100vw, 896px"
           />
+
+          {/* Diagonal Center Watermark */}
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
+            <div className="text-white text-4xl md:text-5xl lg:text-6xl font-bold tracking-wider opacity-25 rotate-[-30deg] whitespace-nowrap drop-shadow-lg">
+              JEFFREY YANG PHOTOGRAPHY
+            </div>
+          </div>
+
+          {/* Instagram Handle - Bottom Right */}
+          <div className="absolute bottom-4 right-4 text-white text-sm md:text-base font-medium opacity-70 pointer-events-none select-none drop-shadow-md">
+            @shotswithjeff
+          </div>
         </div>
 
         <div className="p-6 flex justify-end">
