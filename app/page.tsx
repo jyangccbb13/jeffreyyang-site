@@ -1,103 +1,150 @@
 import Image from "next/image";
+import Link from "next/link";
+import Reveal from "@/components/Reveal";
+import { site } from "@/lib/site";
+import { featuredPhotos } from "@/lib/work";
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
+    <>
+      {/* ---------- Hero ---------- */}
+      <section className="relative flex min-h-[100svh] items-end overflow-hidden">
         <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
+          src="/featured/craterlake.jpg"
+          alt="Sunrise over Crater Lake"
+          fill
           priority
+          sizes="100vw"
+          className="hero-img object-cover"
         />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/35 to-black/45" />
+        <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-black/50 to-transparent" />
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+        <div className="relative mx-auto w-full max-w-5xl px-5 pb-20 pt-32 sm:px-8 sm:pb-28">
+          <p className="fade-up text-sm uppercase tracking-[0.2em] text-white/70">
+            {site.role}
+          </p>
+          <h1
+            className="fade-up mt-4 max-w-3xl text-5xl text-white sm:text-7xl"
+            style={{ animationDelay: "0.1s" }}
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            {site.name}
+          </h1>
+          <p
+            className="fade-up mt-6 max-w-xl text-lg text-white/85"
+            style={{ animationDelay: "0.2s" }}
           >
-            Read our docs
-          </a>
+            {site.tagline}
+          </p>
+          <div
+            className="fade-up mt-8 flex flex-wrap gap-3"
+            style={{ animationDelay: "0.3s" }}
+          >
+            <Link
+              href="/work"
+              className="rounded-full bg-white px-6 py-3 text-sm font-medium text-ink transition-colors hover:bg-white/90"
+            >
+              See my work
+            </Link>
+            <Link
+              href="/resume"
+              className="rounded-full border border-white/40 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-white/10"
+            >
+              View résumé
+            </Link>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+      </section>
+
+      {/* ---------- Intro ---------- */}
+      <section className="mx-auto max-w-5xl px-5 py-24 sm:px-8">
+        <Reveal>
+          <p className="max-w-2xl font-display text-2xl leading-snug text-ink sm:text-3xl">
+            I&apos;m a student and photographer who likes making things that are
+            useful and things that are beautiful — often at the same time.
+          </p>
+        </Reveal>
+        <Reveal delay={80}>
+          <p className="mt-6 max-w-2xl text-muted">
+            This site is a quick tour of who I am: my background, the work
+            I&apos;m proud of, and what I&apos;m hoping to do next. If any of it
+            resonates,{" "}
+            <Link href="/contact" className="text-accent link-underline">
+              I&apos;d love to hear from you
+            </Link>
+            .
+          </p>
+        </Reveal>
+      </section>
+
+      {/* ---------- Featured work ---------- */}
+      <section className="mx-auto max-w-5xl px-5 sm:px-8">
+        <Reveal className="flex items-end justify-between">
+          <h2 className="text-3xl sm:text-4xl">Selected photography</h2>
+          <Link
+            href="/work"
+            className="hidden text-sm text-muted hover:text-ink sm:block link-underline"
+          >
+            All work →
+          </Link>
+        </Reveal>
+
+        <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4">
+          {featuredPhotos.slice(0, 6).map((photo, i) => (
+            <Reveal
+              key={photo.src}
+              delay={(i % 3) * 70}
+              className="group relative aspect-[4/3] overflow-hidden rounded-md bg-line"
+            >
+              <Image
+                src={photo.src}
+                alt={`${photo.title} — ${photo.place}`}
+                fill
+                sizes="(max-width: 640px) 50vw, 33vw"
+                className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+              />
+              <div className="absolute inset-x-0 bottom-0 translate-y-2 bg-gradient-to-t from-black/60 to-transparent p-3 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                <p className="text-sm font-medium text-white">{photo.title}</p>
+                <p className="text-xs text-white/70">{photo.place}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+
+        <Link
+          href="/work"
+          className="mt-6 inline-block text-sm text-muted hover:text-ink sm:hidden link-underline"
         >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+          All work →
+        </Link>
+      </section>
+
+      {/* ---------- Recruiting CTA ---------- */}
+      <section className="mx-auto mt-24 max-w-5xl px-5 sm:px-8">
+        <Reveal className="rounded-2xl bg-accent px-6 py-14 text-center sm:px-16">
+          <h2 className="text-3xl text-white sm:text-4xl">
+            I&apos;m looking for my next role
+          </h2>
+          <p className="mx-auto mt-4 max-w-xl text-white/80">
+            Open to full-time opportunities in [your field]. If you&apos;re
+            hiring — or just want to talk shop — my inbox is open.
+          </p>
+          <div className="mt-8 flex flex-wrap justify-center gap-3">
+            <a
+              href={`mailto:${site.email}`}
+              className="rounded-full bg-white px-6 py-3 text-sm font-medium text-accent-ink transition-colors hover:bg-white/90"
+            >
+              Email me
+            </a>
+            <Link
+              href="/resume"
+              className="rounded-full border border-white/40 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-white/10"
+            >
+              Résumé
+            </Link>
+          </div>
+        </Reveal>
+      </section>
+    </>
   );
 }

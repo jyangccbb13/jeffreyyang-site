@@ -1,80 +1,65 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import Image from 'next/image';
-import { Photo, photos, categories } from './photos';
-import PhotoModal from './PhotoModal';
+import { useState } from "react";
+import Image from "next/image";
+import { Photo, photos, categories } from "./photos";
+import PhotoModal from "./PhotoModal";
 
 export default function PhotoGallery() {
-  const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [selectedPhoto, setSelectedPhoto] = useState<Photo | null>(null);
 
-  const filteredPhotos =
-    selectedCategory === 'all'
+  const filtered =
+    selectedCategory === "all"
       ? photos
-      : photos.filter((photo) => photo.category === selectedCategory);
+      : photos.filter((p) => p.category === selectedCategory);
 
   return (
-    <div className="w-full">
-      {/* Category Filter */}
-      <div className="mb-8">
-        <div className="flex flex-wrap gap-2">
-          {categories.map((category) => (
+    <div>
+      {/* Filter */}
+      <div className="flex flex-wrap gap-2">
+        {categories.map((category) => {
+          const active = selectedCategory === category.value;
+          return (
             <button
               key={category.value}
               onClick={() => setSelectedCategory(category.value)}
-              className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-                selectedCategory === category.value
-                  ? 'bg-blue-600 text-white'
-                  : 'bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700'
+              className={`rounded-full px-4 py-1.5 text-sm transition-colors ${
+                active
+                  ? "bg-accent text-white"
+                  : "border border-line text-muted hover:border-accent hover:text-accent"
               }`}
             >
               {category.label}
             </button>
-          ))}
-        </div>
+          );
+        })}
       </div>
 
-      {/* Photo Grid */}
-      {filteredPhotos.length === 0 ? (
-        <div className="text-center py-12">
-          <p className="text-gray-600 dark:text-gray-400 text-lg">
-            No photos available yet. Check back soon!
-          </p>
-        </div>
-      ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 auto-rows-[280px]">
-          {filteredPhotos.map((photo) => {
-            // Dynamic grid spanning based on orientation
-            const gridClass =
-              photo.orientation === 'vertical'
-                ? 'row-span-2'
-                : photo.orientation === 'square'
-                ? 'lg:col-span-2 row-span-2'
-                : 'lg:col-span-2';
+      {/* Grid */}
+      <div className="mt-8 grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-3 lg:grid-cols-4">
+        {filtered.map((photo) => (
+          <button
+            key={photo.id}
+            onClick={() => setSelectedPhoto(photo)}
+            className="group relative aspect-square overflow-hidden rounded-md bg-line"
+          >
+            <Image
+              src={photo.imagePath}
+              alt={photo.title}
+              fill
+              sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+              className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+            />
+            <span className="absolute inset-0 bg-ink/0 transition-colors duration-300 group-hover:bg-ink/10" />
+          </button>
+        ))}
+      </div>
 
-            return (
-              <div
-                key={photo.id}
-                className={`group cursor-pointer bg-white dark:bg-gray-900 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow ${gridClass}`}
-                onClick={() => setSelectedPhoto(photo)}
-              >
-                <div className="relative w-full h-full bg-gray-200 dark:bg-gray-800">
-                  <Image
-                    src={photo.imagePath}
-                    alt={photo.title}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-300"
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  />
-                </div>
-              </div>
-            );
-          })}
-        </div>
+      {filtered.length === 0 && (
+        <p className="py-12 text-center text-muted">Nothing here yet — check back soon.</p>
       )}
 
-      {/* Modal */}
       {selectedPhoto && (
         <PhotoModal photo={selectedPhoto} onClose={() => setSelectedPhoto(null)} />
       )}
