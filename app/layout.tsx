@@ -3,6 +3,7 @@ import { Fraunces, Inter } from "next/font/google";
 import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import AuroraBackground from "@/components/AuroraBackground";
 import { site } from "@/lib/site";
 
 const inter = Inter({
@@ -45,6 +46,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${inter.variable} ${fraunces.variable}`}>
       <body>
+        <AuroraBackground />
         <Nav />
         <main>{children}</main>
         <Footer />

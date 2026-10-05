@@ -1,9 +1,16 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { site, nav } from "@/lib/site";
 
 export default function Footer() {
+  // The home hero already fills the viewport — butt the footer straight up
+  // against it there instead of adding the usual breathing room.
+  const isHome = usePathname() === "/";
+
   return (
-    <footer className="mt-24 border-t border-line no-print">
+    <footer className={`border-t border-line no-print ${isHome ? "" : "mt-24"}`}>
       <div className="mx-auto max-w-5xl px-5 py-12 sm:px-8">
         <div className="flex flex-col gap-8 sm:flex-row sm:items-end sm:justify-between">
           <div>

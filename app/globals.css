@@ -1,15 +1,15 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bg: #fbfaf8;
-  --color-surface: #ffffff;
-  --color-ink: #1b1a17;
-  --color-muted: #6f6b63;
-  --color-faint: #97928a;
-  --color-line: #e8e3da;
-  --color-accent: #1f4e46;
-  --color-accent-ink: #163a34;
-  --color-accent-soft: #edf2f0;
+  --color-bg: #0c0c0e;
+  --color-surface: #17161b;
+  --color-ink: #f4f2ec;
+  --color-muted: #a39e94;
+  --color-faint: #726d63;
+  --color-line: #2b2a25;
+  --color-accent: #a85c32;
+  --color-accent-ink: #e8c4a0;
+  --color-accent-soft: #241a12;
 
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, sans-serif;
   --font-display: var(--font-fraunces), ui-serif, Georgia, "Times New Roman", serif;
@@ -92,6 +92,52 @@ h1, h2, h3, h4 {
   html { scroll-behavior: auto; }
   .reveal { opacity: 1; transform: none; transition: none; }
   .hero-img, .fade-up { animation: none; }
+}
+
+/* --- Ambient aurora background --- */
+.aurora-blob {
+  position: absolute;
+  width: 60vw;
+  height: 60vw;
+  max-width: 760px;
+  max-height: 760px;
+  border-radius: 9999px;
+  filter: blur(110px);
+  opacity: 0.3;
+  will-change: transform;
+}
+.aurora-blob-a {
+  top: -12%;
+  left: -12%;
+  background: radial-gradient(circle, #e6d9c3 0%, transparent 70%);
+  animation: aurora-drift-a 26s ease-in-out infinite alternate;
+}
+.aurora-blob-b {
+  bottom: -16%;
+  right: -8%;
+  background: radial-gradient(circle, #d4c3a1 0%, transparent 70%);
+  animation: aurora-drift-b 32s ease-in-out infinite alternate;
+}
+.aurora-blob-c {
+  top: 28%;
+  left: 38%;
+  background: radial-gradient(circle, #c2b093 0%, transparent 70%);
+  animation: aurora-drift-c 38s ease-in-out infinite alternate;
+}
+@keyframes aurora-drift-a {
+  from { transform: translate(0, 0) scale(1); }
+  to { transform: translate(10%, 14%) scale(1.15); }
+}
+@keyframes aurora-drift-b {
+  from { transform: translate(0, 0) scale(1); }
+  to { transform: translate(-12%, -10%) scale(1.1); }
+}
+@keyframes aurora-drift-c {
+  from { transform: translate(-6%, 0) scale(0.95); }
+  to { transform: translate(8%, -12%) scale(1.12); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .aurora-blob { animation: none; }
 }
 
 /* --- Print (resume) --- */

@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Reveal from "@/components/Reveal";
+import ContactForm from "@/components/ContactForm";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -7,11 +9,11 @@ export const metadata: Metadata = {
   description: `Get in touch with ${site.name}.`,
 };
 
-const links = [
-  { label: "Email", value: site.email, href: `mailto:${site.email}` },
-  { label: "LinkedIn", value: "in/your-handle", href: site.socials.linkedin },
-  { label: "GitHub", value: "jyangccbb13", href: site.socials.github },
-  { label: "Instagram", value: "@shotswithjeff", href: site.socials.instagram },
+const socialButtons = [
+  { label: "Email", href: `mailto:${site.email}`, icon: "/icons/gmail.png", external: false },
+  { label: "LinkedIn", href: site.socials.linkedin, icon: "/icons/linkedin.png", external: true },
+  { label: "Instagram", href: site.socials.instagram, icon: "/icons/instagram.png", external: true },
+  { label: "GitHub", href: site.socials.github, icon: "/icons/github.png", external: true },
 ];
 
 export default function ContactPage() {
@@ -26,19 +28,21 @@ export default function ContactPage() {
         </p>
       </Reveal>
 
-      <Reveal delay={80} className="mt-12 divide-y divide-line border-y border-line">
-        {links.map((link) => (
+      <Reveal delay={80} className="mt-12 rounded-2xl border border-line bg-surface px-6 py-8 sm:px-10 sm:py-10">
+        <ContactForm />
+      </Reveal>
+
+      <Reveal delay={120} className="mt-8 flex flex-wrap justify-center gap-3">
+        {socialButtons.map((item) => (
           <a
-            key={link.label}
-            href={link.href}
-            target={link.href.startsWith("http") ? "_blank" : undefined}
-            rel="noreferrer"
-            className="group flex items-center justify-between py-5 transition-colors hover:text-accent"
+            key={item.label}
+            href={item.href}
+            target={item.external ? "_blank" : undefined}
+            rel={item.external ? "noreferrer" : undefined}
+            aria-label={item.label}
+            className="flex h-11 w-11 items-center justify-center rounded-xl bg-white p-2 shadow-sm ring-1 ring-line transition-transform hover:scale-105"
           >
-            <span className="text-sm uppercase tracking-wider text-faint group-hover:text-accent">
-              {link.label}
-            </span>
-            <span className="text-lg">{link.value}</span>
+            <Image src={item.icon} alt="" width={32} height={32} className="h-full w-full object-contain" />
           </a>
         ))}
       </Reveal>

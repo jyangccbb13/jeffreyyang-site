@@ -4,11 +4,11 @@
 
 export const site = {
   name: "Jeffrey Yang",
-  // Short role line shown under the name in the hero + resume header.
-  role: "Student · Photographer · Aspiring [your field]",
+  // Short role line used in the browser tab title + resume header.
+  role: "Senior at USC",
   // One or two sentences. Shows on the home hero and as the meta description.
   tagline:
-    "I build things, tell stories with a camera, and spend my weekends in the mountains. Currently looking for full-time roles in [your field].",
+    "Senior at USC with a background in finance, computer science, and product. An avid builder with a curious mind.",
   email: "jyangccbb13@gmail.com",
   location: "[Your City, State]",
 
@@ -16,7 +16,7 @@ export const site = {
   url: "https://jeffreyyang.org",
 
   socials: {
-    linkedin: "https://www.linkedin.com/in/your-handle",
+    linkedin: "https://www.linkedin.com/in/jeffrey-yangg/",
     github: "https://github.com/jyangccbb13",
     instagram: "https://www.instagram.com/shotswithjeff",
   },
@@ -26,6 +26,5 @@ export const nav = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
   { href: "/work", label: "Work" },
-  { href: "/resume", label: "Résumé" },
   { href: "/contact", label: "Contact" },
 ];
