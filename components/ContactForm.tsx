@@ -6,21 +6,51 @@ import { site } from "@/lib/site";
 const fieldClasses =
   "w-full rounded-lg border border-line bg-bg px-4 py-3 text-sm text-ink placeholder:text-faint outline-none transition-colors focus:border-accent/60";
 
+type Status = "idle" | "sending" | "sent" | "error";
+
 export default function ContactForm() {
-  const [sent, setSent] = useState(false);
+  const [status, setStatus] = useState<Status>("idle");
 
-  function handleSubmit(e: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const data = new FormData(e.currentTarget);
-    const from = data.get("email")?.toString().trim() ?? "";
-    const subject = data.get("subject")?.toString().trim() || "Hello from your site";
-    const message = data.get("message")?.toString().trim() ?? "";
-    const body = from ? `${message}\n\n— reply to: ${from}` : message;
+    const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_KEY;
 
-    window.location.href = `mailto:${site.email}?subject=${encodeURIComponent(
-      subject
-    )}&body=${encodeURIComponent(body)}`;
-    setSent(true);
+    if (!accessKey) {
+      // Not configured yet — fall back to opening the visitor's email client.
+      const data = new FormData(e.currentTarget);
+      const from = data.get("email")?.toString().trim() ?? "";
+      const subject = data.get("subject")?.toString().trim() || "Hello from your site";
+      const message = data.get("message")?.toString().trim() ?? "";
+      const body = from ? `${message}\n\n— reply to: ${from}` : message;
+      window.location.href = `mailto:${site.email}?subject=${encodeURIComponent(
+        subject
+      )}&body=${encodeURIComponent(body)}`;
+      setStatus("sent");
+      return;
+    }
+
+    setStatus("sending");
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    data.append("access_key", accessKey);
+    data.append("subject", data.get("subject")?.toString() || "New message from jeffreyyang.org");
+
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: data,
+      });
+      const result = await res.json();
+      if (result.success) {
+        setStatus("sent");
+        form.reset();
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
   }
 
   return (
@@ -52,11 +82,23 @@ export default function ContactForm() {
       </div>
       <button
         type="submit"
-        className="rounded-full bg-button px-6 py-3 text-sm font-medium text-stone-900 transition-colors hover:bg-button-hover"
+        disabled={status === "sending"}
+        className="rounded-full bg-button px-6 py-3 text-sm font-medium text-stone-900 transition-colors hover:bg-button-hover disabled:opacity-60"
       >
-        Send message
+        {status === "sending" ? "Sending…" : "Send message"}
       </button>
-      {sent && <p className="text-xs text-faint">Opening your email client…</p>}
+      {status === "sent" && (
+        <p className="text-xs text-faint">Message sent — I&apos;ll get back to you soon.</p>
+      )}
+      {status === "error" && (
+        <p className="text-xs text-faint">
+          Something went wrong — email me directly at{" "}
+          <a href={`mailto:${site.email}`} className="link-underline">
+            {site.email}
+          </a>
+          .
+        </p>
+      )}
     </form>
   );
 }
