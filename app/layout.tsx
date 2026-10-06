@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
-import { IBM_Plex_Sans, Instrument_Serif } from "next/font/google";
+import { Archivo, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import AuroraBackground from "@/components/AuroraBackground";
 import { site } from "@/lib/site";
 
-const plexSans = IBM_Plex_Sans({
+const archivo = Archivo({
   subsets: ["latin"],
-  weight: ["400", "500"],
-  variable: "--font-plex-sans",
+  weight: ["400", "500", "600"],
+  variable: "--font-archivo",
   display: "swap",
 });
 
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${plexSans.variable} ${instrumentSerif.variable}`}>
+    <html lang="en" className={`${archivo.variable} ${instrumentSerif.variable}`}>
       <body>
         <AuroraBackground />
         <Nav />

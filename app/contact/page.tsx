@@ -20,9 +20,8 @@ export default function ContactPage() {
     <div className="mx-auto max-w-5xl px-5 pb-8 pt-32 sm:px-8">
       <Reveal>
         <h1 className="text-4xl sm:text-5xl">Let&apos;s talk</h1>
-        <p className="mt-6 max-w-xl text-lg text-muted">
-          Open to full-time and part-time roles and photo/video work. Happy to
-          chat!
+        <p className="mt-6 max-w-2xl text-lg text-muted">
+          Open to full-time and part-time roles and photo/video work. Happy to chat!
         </p>
       </Reveal>
 
