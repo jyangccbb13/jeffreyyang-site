@@ -8,7 +8,7 @@ export const site = {
   role: "Senior at USC",
   // One or two sentences. Shows on the home hero and as the meta description.
   tagline:
-    "Senior at USC with a background in finance, computer science, and product. An avid builder with a curious mind.",
+    "Senior at USC with a background in finance, computer science, and product. Curious to learn and eager to build.",
   email: "jyangccbb13@gmail.com",
   location: "[Your City, State]",
 
