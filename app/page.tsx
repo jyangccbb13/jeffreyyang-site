@@ -32,7 +32,7 @@ export default function Home() {
         >
           <Link
             href="/work"
-            className="rounded-full bg-white px-6 py-3 text-sm font-medium text-stone-900 transition-colors hover:bg-white/90"
+            className="rounded-full bg-button px-6 py-3 text-sm font-medium text-stone-900 transition-colors hover:bg-button-hover"
           >
             See my work
           </Link>
@@ -42,7 +42,7 @@ export default function Home() {
               target="_blank"
               rel="noreferrer"
               aria-label="Instagram"
-              className="flex h-11 w-11 items-center justify-center rounded-xl bg-white p-2 shadow-sm transition-transform hover:scale-105"
+              className="flex h-11 w-11 items-center justify-center rounded-xl bg-button p-2 shadow-sm transition-transform hover:scale-105"
             >
               <Image
                 src="/icons/instagram.png"
@@ -57,25 +57,10 @@ export default function Home() {
               target="_blank"
               rel="noreferrer"
               aria-label="LinkedIn"
-              className="flex h-11 w-11 items-center justify-center rounded-xl bg-white p-2 shadow-sm transition-transform hover:scale-105"
+              className="flex h-11 w-11 items-center justify-center rounded-xl bg-button p-2 shadow-sm transition-transform hover:scale-105"
             >
               <Image
                 src="/icons/linkedin.png"
-                alt=""
-                width={32}
-                height={32}
-                className="h-full w-full object-contain"
-              />
-            </a>
-            <a
-              href={site.socials.github}
-              target="_blank"
-              rel="noreferrer"
-              aria-label="GitHub"
-              className="flex h-11 w-11 items-center justify-center rounded-xl bg-white p-2 shadow-sm transition-transform hover:scale-105"
-            >
-              <Image
-                src="/icons/github.png"
                 alt=""
                 width={32}
                 height={32}

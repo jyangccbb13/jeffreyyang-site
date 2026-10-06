@@ -10,9 +10,11 @@
   --color-accent: #a85c32;
   --color-accent-ink: #e8c4a0;
   --color-accent-soft: #241a12;
+  --color-button: #e8ddc8;
+  --color-button-hover: #ddcfb3;
 
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, sans-serif;
-  --font-display: var(--font-fraunces), ui-serif, Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-plex-sans), ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-display: var(--font-instrument-serif), ui-serif, Georgia, "Times New Roman", serif;
 
   --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -41,8 +43,13 @@ body {
 h1, h2, h3, h4 {
   font-family: var(--font-display);
   font-weight: 400;
-  letter-spacing: -0.015em;
-  line-height: 1.08;
+  letter-spacing: -0.01em;
+  line-height: 1.05;
+}
+
+h1 {
+  font-style: italic;
+  letter-spacing: -0.005em;
 }
 
 /* --- Reveal-on-scroll --- */

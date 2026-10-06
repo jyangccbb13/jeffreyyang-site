@@ -17,7 +17,6 @@ export const site = {
 
   socials: {
     linkedin: "https://www.linkedin.com/in/jeffrey-yangg/",
-    github: "https://github.com/jyangccbb13",
     instagram: "https://www.instagram.com/shotswithjeff",
   },
 };

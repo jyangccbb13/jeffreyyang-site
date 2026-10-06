@@ -3,7 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import { site } from "@/lib/site";
-import { aboutPhotos } from "@/lib/about";
 
 export const metadata: Metadata = {
   title: "About",
@@ -58,29 +57,6 @@ export default function AboutPage() {
           </div>
         </Reveal>
       </div>
-
-      <section className="mt-20">
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
-          {aboutPhotos.map((photo, i) => (
-            <Reveal
-              key={photo.src}
-              delay={(i % 4) * 70}
-              className="group relative aspect-[4/5] overflow-hidden rounded-md bg-line"
-            >
-              <Image
-                src={photo.src}
-                alt={photo.caption}
-                fill
-                sizes="(max-width: 640px) 50vw, 25vw"
-                className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-              />
-              <div className="absolute inset-x-0 bottom-0 translate-y-2 bg-gradient-to-t from-black/60 to-transparent p-3 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-                <p className="text-sm font-medium text-white">{photo.caption}</p>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-      </section>
     </div>
   );
 }

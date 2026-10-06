@@ -35,3 +35,4 @@ next-env.d.ts
 
 # photo originals (don't commit high-res originals)
 public/photography/originals/
+public/videos/originals/

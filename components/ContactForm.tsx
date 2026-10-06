@@ -26,19 +26,19 @@ export default function ContactForm() {
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <div>
-        <label htmlFor="email" className="mb-1.5 block text-xs uppercase tracking-wider text-faint">
+        <label htmlFor="email" className="mb-1.5 block text-sm text-faint">
           Your email
         </label>
         <input id="email" name="email" type="email" required placeholder="you@email.com" className={fieldClasses} />
       </div>
       <div>
-        <label htmlFor="subject" className="mb-1.5 block text-xs uppercase tracking-wider text-faint">
+        <label htmlFor="subject" className="mb-1.5 block text-sm text-faint">
           Subject
         </label>
         <input id="subject" name="subject" type="text" placeholder="What's this about?" className={fieldClasses} />
       </div>
       <div>
-        <label htmlFor="message" className="mb-1.5 block text-xs uppercase tracking-wider text-faint">
+        <label htmlFor="message" className="mb-1.5 block text-sm text-faint">
           Message
         </label>
         <textarea
@@ -52,7 +52,7 @@ export default function ContactForm() {
       </div>
       <button
         type="submit"
-        className="rounded-full bg-white px-6 py-3 text-sm font-medium text-stone-900 transition-colors hover:bg-white/90"
+        className="rounded-full bg-button px-6 py-3 text-sm font-medium text-stone-900 transition-colors hover:bg-button-hover"
       >
         Send message
       </button>
