@@ -24,12 +24,12 @@ const instrumentSerif = Instrument_Serif({
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.name} — ${site.role}`,
+    default: site.name,
     template: `%s — ${site.name}`,
   },
   description: site.tagline,
   openGraph: {
-    title: `${site.name} — ${site.role}`,
+    title: site.name,
     description: site.tagline,
     url: site.url,
     siteName: site.name,
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${site.name} — ${site.role}`,
+    title: site.name,
     description: site.tagline,
     images: ["/og.jpg"],
   },
