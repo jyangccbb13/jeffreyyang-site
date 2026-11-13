@@ -41,7 +41,7 @@ export const experience: ExperienceEntry[] = [
     role: "Founding Engineer",
     period: "Sep – Dec 2025",
     description: [
-      "Built a computer vision product that analyzes walking patterns to support early detection of dementia and Alzheimer's.",
+      "Computer vision product that analyzes walking patterns to support early detection of dementia and Alzheimer's. My role: owned the ML integration end to end and helped define product-market fit alongside the founding team.",
     ],
   },
   {
@@ -49,7 +49,7 @@ export const experience: ExperienceEntry[] = [
     role: "Founding Engineer",
     period: "Sep – Dec 2025",
     description: [
-      "Built a platform helping international high school students manage the college application process, with dashboards, reminders, and live status tracking for their counselors.",
+      "Platform helping international high school students manage the college application process, with dashboards, reminders, and live status tracking for their counselors. My role: led product — ran 15+ user interviews and defined the roadmap.",
     ],
   },
   {
@@ -58,6 +58,14 @@ export const experience: ExperienceEntry[] = [
     period: "May – Aug 2025",
     description: [
       "Built parsers that ingest existing Cisco and Juniper network configuration files and translate them into Arista's EOS format, letting customers migrate to Arista hardware without rewriting their configurations by hand.",
+    ],
+  },
+  {
+    company: "Bliss",
+    role: "Product Manager, Troy Labs",
+    period: "Aug 2024 – Present",
+    description: [
+      "Led product for Bliss, an AI study tool — ran 50+ user interviews, defined the roadmap, and shipped the MVP in 10 weeks. Scaled to 500+ users in under 3 months through GTM execution and advised the founder on fundraising.",
     ],
   },
 ];

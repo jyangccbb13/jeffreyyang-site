@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import { site } from "@/lib/site";
 
@@ -35,13 +34,6 @@ export default function AboutPage() {
             incubator and accelerator) and Trojan Finance Academy. When
             I&apos;m free, I enjoy photography and videography, cooking,
             traveling, and playing volleyball and soccer.
-          </p>
-          <p className="text-muted">
-            Want to know more?{" "}
-            <Link href="/contact" className="text-accent link-underline">
-              Get in touch
-            </Link>
-            .
           </p>
         </Reveal>
 

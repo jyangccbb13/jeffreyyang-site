@@ -8,9 +8,8 @@ export const site = {
   role: "Senior at USC",
   // One or two sentences. Shows on the home hero and as the meta description.
   tagline:
-    "Senior at USC with a background in finance, computer science, and product. Curious to learn and eager to build.",
+    "Product-minded engineer at USC — I've built software at Arista Networks and co-founded Tether, an AI storytelling platform that won first place at a global student startup competition.",
   email: "jyangccbb13@gmail.com",
-  location: "[Your City, State]",
 
   // Domain the site will live on (used for canonical URLs + Open Graph).
   url: "https://jeffreyyang.org",
@@ -25,5 +24,4 @@ export const nav = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
   { href: "/work", label: "Work" },
-  { href: "/contact", label: "Contact" },
 ];

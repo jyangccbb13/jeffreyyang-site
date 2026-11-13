@@ -55,6 +55,12 @@ h2, h3, h4 {
   line-height: 1.25;
 }
 
+/* Experience entries: dial back the heavy, tight-tracked "AI template" weight. */
+.job-title {
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
 /* --- Reveal-on-scroll --- */
 .reveal {
   opacity: 0;

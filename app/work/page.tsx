@@ -35,7 +35,7 @@ export default function WorkPage() {
               className="rounded-2xl border border-line p-8 sm:p-10"
             >
               <div className="flex flex-wrap items-baseline justify-between gap-x-4">
-                <h3 className="text-lg sm:text-xl">
+                <h3 className="job-title text-lg sm:text-xl">
                   {job.company}
                   <span className="text-sm text-muted sm:text-base"> · {job.role}</span>
                 </h3>
